@@ -1,16 +1,22 @@
-html,
-body {
-  padding: 0;
+:root {
+  --white-shade: #fafafa;
+  --white: #ffffff;
+  --int-blue: #360ccc;
+  --base: #121212;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+html {
+  font-size: 62.5%;
 }
-
-* {
+body {
   box-sizing: border-box;
+  font-family: 'Padauk', sans-serif;
+  color: var(--white-shade);
+  background-color: var(--base);
 }
