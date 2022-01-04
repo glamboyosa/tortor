@@ -3,12 +3,27 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '@/styles/capture.module.css'
 import Image from 'next/image'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const Capture: NextPage = () => {
   const input = useRef<HTMLInputElement>(undefined!)
 
   const [loading, setLoading] = useState(false)
 
   const [screenshot, setScreenshot] = useState<string | null>(null)
+
+  const notify = (type: 'error', message?: string) =>
+    toast(message, {
+      position: 'top-center',
+      type,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
 
   const submitHandler = async () => {
     const url = input.current.value
@@ -29,7 +44,7 @@ const Capture: NextPage = () => {
         })
         .catch((e) => {
           setLoading(false)
-          console.log(JSON.stringify(e))
+          notify('error', e.message)
         })
     } else {
       const formattedUrl = 'https://' + url
@@ -40,13 +55,13 @@ const Capture: NextPage = () => {
         method: 'POST',
       })
         .then((res) => res.json())
-        .then((res: {img: string}) => {
+        .then((res: { img: string }) => {
           setLoading(false)
           setScreenshot(res.img)
         })
         .catch((e) => {
           setLoading(false)
-          console.log(JSON.stringify(e))
+          notify('error', e.message)
         })
     }
   }
@@ -90,7 +105,10 @@ const Capture: NextPage = () => {
               src={`data:image/png;base64,${screenshot}`}
               alt="your image"
             />
-            <button className={`${styles.marginutility} ${styles.button}`} onClick={submitHandler}>
+            <button
+              className={`${styles.marginutility} ${styles.button}`}
+              onClick={submitHandler}
+            >
               download your image 🚀
             </button>
           </div>
@@ -109,6 +127,7 @@ const Capture: NextPage = () => {
           </a>{' '}
         </p>
       </footer>
+      <ToastContainer />
     </div>
   )
 }
