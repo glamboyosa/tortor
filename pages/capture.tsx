@@ -23,6 +23,7 @@ const Capture: NextPage = () => {
       })
         .then((res) => res.text())
         .then((res) => {
+            setLoading(fals)
             setScreenshot(res)
         })
         .catch((e) => {
