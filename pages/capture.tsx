@@ -9,6 +9,7 @@ const Capture: NextPage = () => {
   const [loading, setLoading] = useState(false)
 
   const [screenshot, setScreenshot] = useState<string | null>(null)
+
   const submitHandler = async () => {
     const url = input.current.value
     if (url.includes('https://')) {
@@ -21,10 +22,10 @@ const Capture: NextPage = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then((res) => res.text())
-        .then((res) => {
-            setLoading(fals)
-            setScreenshot(res)
+        .then((res) => res.json())
+        .then((res: { img: string }) => {
+          setLoading(false)
+          setScreenshot(res.img)
         })
         .catch((e) => {
           setLoading(false)
@@ -38,10 +39,10 @@ const Capture: NextPage = () => {
         body,
         method: 'POST',
       })
-        .then((res) => res.text())
-        .then((res) => {
+        .then((res) => res.json())
+        .then((res: {img: string}) => {
           setLoading(false)
-          setScreenshot(res)
+          setScreenshot(res.img)
         })
         .catch((e) => {
           setLoading(false)
@@ -64,7 +65,7 @@ const Capture: NextPage = () => {
             placeholder="Enter a valid web url"
           />
           <button className={styles.button} onClick={submitHandler}>
-            Try it out
+            Submit
           </button>
         </div>
         {loading && (
@@ -82,13 +83,19 @@ const Capture: NextPage = () => {
             />
           </div>
         )}
-        {screenshot && (
+        {screenshot && !loading ? (
           <div className={styles.main}>
-            <Image src={screenshot} alt="your image" width={350} height={200} />
+            <img
+              className={styles.bs}
+              src={`data:image/png;base64,${screenshot}`}
+              alt="your image"
+            />
+            <button className={`${styles.marginutility} ${styles.button}`} onClick={submitHandler}>
+              download your image 🚀
+            </button>
           </div>
-        )}
+        ) : null}
       </main>
-
       <footer className={styles.footer}>
         <p className={styles.fontutility}>
           Made with ❤️ by{' '}

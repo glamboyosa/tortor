@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import puppeteer from 'puppeteer'
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<string | Buffer>,
+  res: NextApiResponse<{ img: string }>,
 ) {
   if (req.method === 'POST') {
     const { url }: { url: string } = req.body
@@ -17,14 +17,8 @@ export default async function handler(
 
       const screenshotBuffer = await page.screenshot()
 
-      console.log(screenshotBuffer.toString('utf-8'))
-      res
-        .setHeader('Content-Type', 'image/png')
-        .setHeader('Content-Length', screenshotBuffer.length)
-        .status(200)
-        .end(screenshotBuffer)
-
-        await browser.close();
+      console.log(screenshotBuffer.toString('ascii'))
+      res.status(200).json({ img: screenshotBuffer.toString('base64') })
     } catch (e: any) {
       throw new Error(e.message)
     }

@@ -47,6 +47,9 @@
   font-size: 2rem;
   outline: none;
 }
+.bs {
+  box-shadow: 1.5rem 2rem 1.5rem rgba(255, 255, 255, 0.4);
+}
 .button {
   padding: 1rem 3rem;
   border: none;
