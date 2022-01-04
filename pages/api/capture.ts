@@ -7,18 +7,26 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     const { url }: { url: string } = req.body
-    const browser = puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    })
-    const page = await (await browser).newPage()
+    try {
+      const browser = puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      })
+      const page = await (await browser).newPage()
 
-    await page.goto(url, { timeout: 0 })
+      await page.goto(url, { timeout: 0 })
 
-    const screenshotBuffer = await page.screenshot()
-    res
-      .setHeader('Content-Type', 'image/png')
-      .setHeader('Content-Length', screenshotBuffer.length)
-      .status(200)
-      .send(screenshotBuffer)
+      const screenshotBuffer = await page.screenshot()
+
+      console.log(screenshotBuffer.toString('utf-8'))
+      res
+        .setHeader('Content-Type', 'image/png')
+        .setHeader('Content-Length', screenshotBuffer.length)
+        .status(200)
+        .end(screenshotBuffer)
+
+        await browser.close();
+    } catch (e: any) {
+      throw new Error(e.message)
+    }
   }
 }
