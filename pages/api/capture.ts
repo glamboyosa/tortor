@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import puppeteer from 'puppeteer'
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse<string | Buffer>,
 ) {
   if (req.method === 'POST') {
     const { url }: { url: string } = req.body
