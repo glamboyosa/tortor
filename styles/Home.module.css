@@ -60,3 +60,32 @@
   text-decoration: none;
   color: var(--int-blue);
 }
+
+.cube {
+  top: 12vh;
+  right: 15%;
+}
+.animationcontrols {
+  width: 8%;
+  position: absolute;
+  animation: upanddown 1s linear infinite alternate;
+}
+.triangle {
+  top: 70vh;
+  right: 15%;
+}
+.shape {
+  top: 12vh;
+  left: 10%;
+}
+
+/* animations */
+
+@keyframes upanddown {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(6%);
+  }
+}

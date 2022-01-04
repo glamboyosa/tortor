@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useRouter } from 'next/router'
-
+import Image from 'next/image'
 const Home: NextPage = () => {
   const { push } = useRouter() || { push: null }
   return (
@@ -21,6 +21,21 @@ const Home: NextPage = () => {
             Try it out
           </button>
         </div>
+        <img
+          className={`${styles.animationcontrols} ${styles.cube}`}
+          src="/icons/triangle.png"
+          alt="a triangle image provided by Darius Dan https://www.flaticon.com/authors/darius-dan"
+        />
+        <img
+          className={`${styles.animationcontrols} ${styles.triangle}`}
+          src="/icons/cube.png"
+          alt="a cube image provided by Darius Dan https://www.flaticon.com/authors/darius-dan"
+        />
+        <img
+          className={`${styles.animationcontrols} ${styles.shape}`}
+          src="/icons/geometric-shape.png"
+          alt="a geometric shape image provided by Darius Dan https://www.flaticon.com/authors/darius-dan"
+        />
       </main>
 
       <footer className={styles.footer}>

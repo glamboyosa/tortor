@@ -19,4 +19,5 @@ body {
   font-family: 'Padauk', sans-serif;
   color: var(--white-shade);
   background-color: var(--base);
+  position: relative;
 }
