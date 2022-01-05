@@ -11,8 +11,9 @@ export default async function handler(
     console.log(url)
     try {
       // to load emojis
-      await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
-
+      await chromium.font(
+        'https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf',
+      )
 
       const browser = await chromium.puppeteer.launch({
         args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
@@ -24,7 +25,7 @@ export default async function handler(
 
       const page = await (await browser).newPage()
 
-      await page.goto(url, { timeout: 0 })
+      await page.goto(url, { timeout: 30000 })
 
       const screenshotBuffer = (await page.screenshot()) as Buffer
 
