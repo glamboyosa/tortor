@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css'
 const Capture: NextPage = () => {
   const input = useRef<HTMLInputElement>(undefined!)
 
+  const [downloadName, setDownloadName] = useState('')
+
   const [loading, setLoading] = useState(false)
 
   const [screenshot, setScreenshot] = useState<string | null>(null)
@@ -28,6 +30,7 @@ const Capture: NextPage = () => {
   const submitHandler = async () => {
     const url = input.current.value
     if (url.includes('https://')) {
+      setDownloadName(url.split('https://')[1])
       const body = JSON.stringify({ url })
       setLoading(true)
       fetch('/api/capture', {
@@ -48,6 +51,7 @@ const Capture: NextPage = () => {
         })
     } else {
       const formattedUrl = 'https://' + url
+      setDownloadName(formattedUrl.split('https://')[1])
       const body = JSON.stringify({ url: formattedUrl })
       setLoading(true)
       fetch('/api/capture', {
@@ -64,6 +68,9 @@ const Capture: NextPage = () => {
           notify('error', e.message)
         })
     }
+  }
+  const downloadimage = () => {
+    window.location.href = 'data:application/octet-stream;base64,' + screenshot
   }
   return (
     <div className={styles.container}>
@@ -105,12 +112,19 @@ const Capture: NextPage = () => {
               src={`data:image/png;base64,${screenshot}`}
               alt="your image"
             />
-            <button
-              className={`${styles.marginutility} ${styles.button}`}
-              onClick={submitHandler}
+            {/* <button
+              className={`${styles.marginutility} ${styles.a}`}
+              onClick={downloadimage}
             >
               download your image 🚀
-            </button>
+            </button> */}
+            <a
+              href={`data:image/png;base64,${screenshot}`}
+              download={`${downloadName}.png`}
+              className={`${styles.marginutility} ${styles.button}`}
+            >
+              download your image 🚀
+            </a>
           </div>
         ) : null}
       </main>

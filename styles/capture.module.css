@@ -59,6 +59,7 @@
   border-radius: 3px;
   font-family: inherit;
   cursor: pointer;
+  text-decoration: none;
 }
 .footer {
   width: 100%;
