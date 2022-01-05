@@ -57,6 +57,9 @@ const Capture: NextPage = () => {
       fetch('/api/capture', {
         body,
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
         .then((res) => res.json())
         .then((res: { img: string }) => {
