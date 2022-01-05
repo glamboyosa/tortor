@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Tortor🏝</h1>
+        <h1 className={styles.title}>Tortor⚡️</h1>
         <p className={styles.description}>
           A utility for taking screenshots of websites.
         </p>

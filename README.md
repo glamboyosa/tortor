@@ -1,4 +1,4 @@
-# Tortor 🏝
+# Tortor ⚡️
 
 This is a website that allows you take screenshots of other websites. Simply enter the URL and a screenshot will be taken and available for download. 
 
