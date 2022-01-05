@@ -20,6 +20,11 @@ const Home: NextPage = () => {
           description: 'A utility for taking screenshots of websites.',
           images: [
             {
+              url: '/images/og-image.png',
+              alt: 'Tortor homepage',
+              type: 'image/png',
+            },
+            {
               url: 'https://tortor.vercel.app/images/og-image.png',
               width: 800,
               height: 600,
@@ -28,6 +33,11 @@ const Home: NextPage = () => {
             },
             {
               url: 'https://www.tortor.app/images/og-image.png',
+              alt: 'Tortor homepage',
+              type: 'image/png',
+            },
+            {
+              url: 'https://www.tortor.vercel.app/images/og-image.png',
               alt: 'Tortor homepage',
               type: 'image/png',
             },
