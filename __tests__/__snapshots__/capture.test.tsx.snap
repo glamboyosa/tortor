@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`submitting a url results in a screenshot being displayed 1`] = `
+<img
+  alt="your image"
+  class="screenshot"
+  src="data:image/png;base64,bXlzaWxseWJ1ZmZlcnN0cmluZw=="
+/>
+`;

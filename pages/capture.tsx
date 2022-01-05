@@ -27,7 +27,7 @@ const Capture: NextPage = () => {
       progress: undefined,
     })
 
-  const submitHandler = async () => {
+  const submitHandler = () => {
     const url = input.current.value
     if (url.includes('https://')) {
       setDownloadName(url.split('https://')[1])
