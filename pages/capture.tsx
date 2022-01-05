@@ -47,7 +47,10 @@ const Capture: NextPage = () => {
         })
         .catch((e) => {
           setLoading(false)
-          notify('error', e.message)
+          notify(
+            'error',
+            'Something went wrong. Please try again in a few minutes.',
+          )
         })
     } else {
       const formattedUrl = 'https://' + url
@@ -68,7 +71,10 @@ const Capture: NextPage = () => {
         })
         .catch((e) => {
           setLoading(false)
-          notify('error', e.message)
+          notify(
+            'error',
+            'Something went wrong. Please try again in a few minutes.',
+          )
         })
     }
   }
@@ -76,7 +82,7 @@ const Capture: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Tortor</title>
+        <title>Tortor⚡️</title>
       </Head>
 
       <main className={styles.main}>
