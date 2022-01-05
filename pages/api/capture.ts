@@ -10,6 +10,9 @@ export default async function handler(
     const { url }: { url: string } = req.body
     console.log(url)
     try {
+        // to load emojis
+        await chromium.font("/opt/custom_fonts/NotoColorEmoji.ttf");
+
       const browser = await chromium.puppeteer.launch({
         args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
         defaultViewport: chromium.defaultViewport,
