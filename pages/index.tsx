@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
+import { NextSeo } from 'next-seo'
 const Home: NextPage = () => {
   const { push } = useRouter() || { push: null }
   return (
@@ -10,7 +10,33 @@ const Home: NextPage = () => {
       <Head>
         <title>Tortor⚡️</title>
       </Head>
-
+      <NextSeo
+        title="Tortor⚡️"
+        description="A utility for taking screenshots of websites."
+        canonical="https://tortor.app"
+        openGraph={{
+          url: 'https://tortor.app',
+          title: 'Tortor⚡️',
+          description: 'A utility for taking screenshots of websites.',
+          images: [
+            {
+              url: 'https://www.tortor.vercel.app/images/og-image.png',
+              width: 800,
+              height: 600,
+              alt: 'Tortor Homepage',
+              type: 'image/png',
+            },
+            {
+              url: 'https://www.tortor.app/og-image.png',
+              alt: 'Tortor homepage',
+              type: 'image/png',
+            },
+          ],
+        }}
+        twitter={{
+          cardType: 'summary_large_image',
+        }}
+      />
       <main className={styles.main}>
         <h1 className={styles.title}>Tortor⚡️</h1>
         <p className={styles.description}>
