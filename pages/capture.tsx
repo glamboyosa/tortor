@@ -109,7 +109,7 @@ const Capture: NextPage = () => {
         {screenshot && !loading ? (
           <div className={styles.main}>
             <img
-              className={styles.bs}
+              className={styles.screenshot}
               src={`data:image/png;base64,${screenshot}`}
               alt="your image"
             />
