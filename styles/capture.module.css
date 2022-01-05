@@ -75,4 +75,7 @@
   .main {
     margin-left: 3rem;
   }
+  .title {
+    font-size: 3rem;
+  }
 }
