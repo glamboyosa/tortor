@@ -11,8 +11,7 @@ export default async function handler(
     console.log(url)
     try {
       // to load emojis
-      await chromium.font('/NotoColorEmoji.ttf')
-
+      await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
 
 
       const browser = await chromium.puppeteer.launch({
