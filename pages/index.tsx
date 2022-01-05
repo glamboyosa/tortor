@@ -27,7 +27,7 @@ const Home: NextPage = () => {
               type: 'image/png',
             },
             {
-              url: 'https://www.tortor.app/og-image.png',
+              url: 'https://www.tortor.app/images/og-image.png',
               alt: 'Tortor homepage',
               type: 'image/png',
             },
