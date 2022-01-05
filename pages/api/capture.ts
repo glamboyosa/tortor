@@ -10,8 +10,8 @@ export default async function handler(
     const { url }: { url: string } = req.body
     console.log(url)
     try {
-        // to load emojis
-        await chromium.font("/opt/custom_fonts/NotoColorEmoji.ttf");
+      // to load emojis
+      await chromium.font('../../fonts/NotoColorEmoji.ttf')
 
       const browser = await chromium.puppeteer.launch({
         args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
@@ -25,7 +25,7 @@ export default async function handler(
 
       await page.goto(url, { timeout: 0 })
 
-      const screenshotBuffer = await page.screenshot() as Buffer
+      const screenshotBuffer = (await page.screenshot()) as Buffer
 
       res.status(200).json({ img: screenshotBuffer.toString('base64') })
     } catch (e: any) {
