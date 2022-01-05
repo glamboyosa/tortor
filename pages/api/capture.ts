@@ -17,7 +17,7 @@ export default async function handler(
 
       const screenshotBuffer = await page.screenshot()
 
-      console.log(screenshotBuffer.toString('ascii'))
+      
       res.status(200).json({ img: screenshotBuffer.toString('base64') })
     } catch (e: any) {
       throw new Error(e.message)

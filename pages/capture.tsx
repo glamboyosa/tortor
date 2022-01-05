@@ -69,9 +69,7 @@ const Capture: NextPage = () => {
         })
     }
   }
-  const downloadimage = () => {
-    window.location.href = 'data:application/octet-stream;base64,' + screenshot
-  }
+
   return (
     <div className={styles.container}>
       <Head>
