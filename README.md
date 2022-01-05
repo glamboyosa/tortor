@@ -7,6 +7,7 @@ This is a website that allows you take screenshots of other websites. Simply ent
 - Fullstack Next.js i.e. 
     - Next.js 
     - Node.js 
+- chrome-aws-lambda
 - Puppeteer 
 - React Testing Library 
 - Jest 
