@@ -11,9 +11,9 @@ export default async function handler(
     console.log(url)
     try {
       // to load emojis
-      await chromium.font('/fonts/NotoColorEmoji.ttf')
+      await chromium.font('/NotoColorEmoji.ttf')
 
-      
+
 
       const browser = await chromium.puppeteer.launch({
         args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
