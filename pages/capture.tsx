@@ -33,7 +33,7 @@ const Capture: NextPage = () => {
   useEffect(() => {
     ws.current = new WebSocket(
       prod
-        ? 'ws://tortor-ws.herokuapp.com/api/capture'
+        ? 'wss://tortor-ws.herokuapp.com/api/capture'
         : 'ws://localhost:4000/api/capture',
     )
     ws.current.onmessage = function (event) {
