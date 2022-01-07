@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import chromium from 'chrome-aws-lambda'
+import fetch from 'node-fetch'
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ img: string }>,
@@ -31,6 +32,16 @@ export default async function handler(
 
       res.status(200).json({ img: screenshotBuffer.toString('base64') })
     } catch (e: any) {
+      fetch('http://localhost:4000/api/capture', {
+        method: 'POST',
+        body: JSON.stringify({ url: req.body.url }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((_) => {})
+        .catch((err) => console.log(err.message))
+
       throw new Error(e.message)
     }
   }
