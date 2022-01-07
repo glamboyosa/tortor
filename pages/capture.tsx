@@ -47,8 +47,11 @@ const Capture: NextPage = () => {
             ),
           5000,
         )
+        setLoading(false)
         setError(false)
       } else {
+        setLoading(false)
+        setError(false)
         setScreenshot(data.img)
       }
     }
@@ -73,7 +76,6 @@ const Capture: NextPage = () => {
         })
         .catch((e) => {
           ws.current?.send(body)
-          setLoading(false)
           setError(true)
           notify('info', 'Have no fear your image will soon be with you')
         })
@@ -96,7 +98,6 @@ const Capture: NextPage = () => {
         })
         .catch((e) => {
           ws.current?.send(body)
-          setLoading(false)
           setError(true)
           notify('info', 'Have no fear your image will soon be with you')
         })
@@ -136,19 +137,13 @@ const Capture: NextPage = () => {
             />
           </div>
         )}
-        {screenshot && !loading ? (
+        {screenshot && !loading && !error ? (
           <div className={styles.main}>
             <img
               className={styles.screenshot}
               src={`data:image/png;base64,${screenshot}`}
               alt="your image"
             />
-            {/* <button
-              className={`${styles.marginutility} ${styles.a}`}
-              onClick={downloadimage}
-            >
-              download your image 🚀
-            </button> */}
             <a
               href={`data:image/png;base64,${screenshot}`}
               download={`${downloadName}.png`}
