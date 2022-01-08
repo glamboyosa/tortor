@@ -32,16 +32,6 @@ export default async function handler(
 
       res.status(200).json({ img: screenshotBuffer.toString('base64') })
     } catch (e: any) {
-      fetch('http://localhost:4000/api/capture', {
-        method: 'POST',
-        body: JSON.stringify({ url: req.body.url }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((_) => {})
-        .catch((err) => console.log(err.message))
-
       throw new Error(e.message)
     }
   }
