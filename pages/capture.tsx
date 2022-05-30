@@ -10,7 +10,7 @@ const Capture: NextPage = () => {
   const prod = process.env.NODE_ENV === 'production'
   const ws = useRef<WebSocket | undefined>(undefined!)
   const input = useRef<HTMLInputElement>(undefined!)
-
+  const select = useRef<HTMLSelectElement>(undefined!)
   const [downloadName, setDownloadName] = useState('')
 
   const [loading, setLoading] = useState(false)
@@ -58,9 +58,11 @@ const Capture: NextPage = () => {
   }, [])
   const submitHandler = () => {
     const url = input.current.value
+    const device = select.current.value
+
     if (url.includes('https://')) {
       setDownloadName(url.split('https://')[1])
-      const body = JSON.stringify({ url })
+      const body = JSON.stringify({ url, device })
       setLoading(true)
       fetch('/api/capture', {
         body,
@@ -82,7 +84,7 @@ const Capture: NextPage = () => {
     } else {
       const formattedUrl = 'https://' + url
       setDownloadName(formattedUrl.split('https://')[1])
-      const body = JSON.stringify({ url: formattedUrl })
+      const body = JSON.stringify({ url: formattedUrl, device })
       setLoading(true)
       fetch('/api/capture', {
         body,
@@ -118,6 +120,10 @@ const Capture: NextPage = () => {
             className={styles.input}
             placeholder="Enter a valid web url"
           />
+          <select className={styles.select} ref={select} defaultValue="Desktop">
+            <option value="Desktop">Desktop</option>
+            <option value="Mobile">Mobile</option>
+          </select>
           <button className={styles.button} onClick={submitHandler}>
             Submit
           </button>

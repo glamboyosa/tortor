@@ -8,8 +8,8 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: 1fr 0.7fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 0.7fr;
+  gap: 1rem;
 }
 .fontutility {
   font-size: 2rem;
@@ -38,13 +38,16 @@
 .centremain {
   justify-content: center;
 }
-.input {
+.input,
+.select {
   padding: 1rem 3rem;
   color: var(--black);
   border: 1px solid var(--white-shade);
   box-shadow: 0 1rem 1rem rgba(255, 255, 255, 0.4);
   font-family: inherit;
   font-size: 2rem;
+}
+.input {
   outline: none;
 }
 .screenshot {
@@ -74,4 +77,12 @@
 .title,
 .description {
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .input,
+  .select,
+  .button {
+    width: auto;
+  }
 }

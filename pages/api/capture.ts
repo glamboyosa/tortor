@@ -1,15 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import chromium from 'chrome-aws-lambda'
-import fetch from 'node-fetch'
+import chromium, { puppeteer } from 'chrome-aws-lambda'
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ img: string }>,
 ) {
   if (req.method === 'POST') {
     console.log(req.body)
-    const { url }: { url: string } = req.body
+    const { url, device }: { url: string; device: 'Desktop' | 'Mobile' } =
+      req.body
     console.log(url)
+    console.log(device)
     try {
       // to load emojis
       await chromium.font(
@@ -25,6 +26,8 @@ export default async function handler(
       })
 
       const page = await (await browser).newPage()
+
+      device === 'Mobile' && (await page.emulate(puppeteer.devices['iPhone X']))
 
       await page.goto(url, { timeout: 30000 })
 
