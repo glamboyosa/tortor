@@ -5,12 +5,15 @@ import styles from '@/styles/capture.module.css'
 import Image from 'next/image'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { TInputRef, TSelectRef, TWebsocket } from 'lib/types'
+import Input from '@/components/Input'
+import Select from '@/components/Select'
 
 const Capture: NextPage = () => {
   const prod = process.env.NODE_ENV === 'production'
-  const ws = useRef<WebSocket | undefined>(undefined!)
-  const input = useRef<HTMLInputElement>(undefined!)
-  const select = useRef<HTMLSelectElement>(undefined!)
+  const ws = useRef<TWebsocket>(undefined!)
+  const input = useRef<TInputRef>(undefined!)
+  const select = useRef<TSelectRef>(undefined!)
   const [downloadName, setDownloadName] = useState('')
 
   const [loading, setLoading] = useState(false)
@@ -115,15 +118,8 @@ const Capture: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Enter a web URL to experience Tortor. </h1>
         <div className={`${styles.marginutility} ${styles.grid}`}>
-          <input
-            ref={input}
-            className={styles.input}
-            placeholder="Enter a valid web url"
-          />
-          <select className={styles.select} ref={select} defaultValue="Desktop">
-            <option value="Desktop">Desktop</option>
-            <option value="Mobile">Mobile</option>
-          </select>
+          <Input ref={input} />
+          <Select ref={select} />
           <button className={styles.button} onClick={submitHandler}>
             Submit
           </button>
